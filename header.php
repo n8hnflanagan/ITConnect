@@ -86,7 +86,7 @@
             <li><a href="CompanyProfilePage.php">Companies</a></li>
 			<li><a href="SearchPage.php">Search</a></li>
 			<li><a href="UserAccountPage.php">Account</a></li>
-			<li><a href="index.php">Log in</a></li>
+			<li><a href="index.php">Log in or out </a></li>
 			<li><a href="RegistrationPage.php">Sign-up</a></li>
           </ul>
         </div><!--/.nav-collapse -->

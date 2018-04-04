@@ -3,7 +3,7 @@
 session_start();
 
 if (isset($_POST['submit'])) {
-	
+
 	include 'dbh.inc.php';
 
 	$uid = mysqli_real_escape_string($conn, $_POST['uid']);
@@ -34,7 +34,7 @@ if (isset($_POST['submit'])) {
 								$_SESSION['u_first'] = $row['UserFirstName'];
 								$_SESSION['u_last'] = $row['UserLastName'];
 								$_SESSION['u_email'] = $row['UserEmail'];
-								$_SESSION['u_id'] = $row['UserName'];
+								$_SESSION['u_name'] = $row['UserName'];
 								header("Location: ../UserAccountPage.php?login=success");
 								exit();
  								}
