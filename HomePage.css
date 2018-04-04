@@ -1,0 +1,42 @@
+/*Show borders: 
+* {  
+	border: 1px solid red !important 
+}
+*/
+
+body {
+  padding-top: 75px;
+  padding-bottom: 75px;
+
+}
+
+
+
+.home-heading {
+	border: 1px solid grey;
+	text-align:center;
+	padding: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	background-color: #AED6F1;
+}
+
+
+
+
+.menu-bar {
+	height: 60px;
+	padding: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border: 1px solid grey;
+	background-color: #AED6F1;
+	font-family: arial;
+	font-size: 13px;
+	text-align: center;
+}
+
+
+
+
+	

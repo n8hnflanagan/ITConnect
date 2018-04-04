@@ -1,0 +1,86 @@
+/*Show borders: 
+* {  
+	border: 2px solid red !important 
+}
+*/
+
+/* make the size of the box include border and padding (to keep the width the same, regardless of the padding */
+ * {
+	-webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+ }
+ 
+.top-toolbar {
+	display: flex;
+	border: 1px solid red;
+}
+	.homepage-link {font-size: 25px; width: 16.66%;}
+	.search-link {font-size: 25px; width: 16.66%;}
+	.connections-link {font-size: 25px; width: 16.66%;}
+	.jobs-link {font-size: 25px; width: 16.66%;}
+	.companies-link {font-size: 25px; width: 16.66%;}
+	.login-out {font-size: 25px; width: 16.66%;}
+	
+.company-cover-photo{
+	border: 1px solid red;
+	height: 200px; 
+	text-align: center;
+	font-size: 50px;
+	}
+	
+
+.comp-logo-and-links {
+	display: flex;
+	height: 200px;
+	border: 1px solid red;
+}
+	.company-profile{
+		border: 1px solid red;
+		width:30%;
+	}
+		.company-profile-photo {text-align: center;}
+		.company-brief-details{}
+	
+
+	.company-vacancies-link {width: 70%; font-size: 25px;}	
+
+
+.main {
+	
+	display: flex; 
+	height: 600px;
+	}
+
+	.relevant-info{
+		border: 1px solid red;
+		width:30%
+		}
+		.similar-companies{}
+		.other-info{}
+		
+	.main-text {
+		border: 1px solid red;
+		width: 70%; 
+		font-size: 25px}
+		
+		
+.bottom-toolbar {
+	display: flex;
+	text-align: center;
+	font-size: 20px;
+	border: 1px solid red;
+}
+	.subscribe {width: 20%;}
+	
+	.about {width: 20%;}
+	.FAQ {width: 20%;}
+	.help {width: 20%;}
+	.social {width: 20%;}
+	
+		
+
+	
+
+

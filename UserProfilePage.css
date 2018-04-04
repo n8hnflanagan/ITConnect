@@ -1,0 +1,94 @@
+/*Show borders: 
+* {  
+	border: 1px solid red !important 
+}
+*/
+
+body {
+  padding-top: 75px;
+  padding-bottom: 75px;
+  /*background-image: url(PrototypeImages/home-image.jpg); this is how you add a background image for the whole page */
+}
+
+
+.cover-photo {
+	/*background-image: url(PrototypeImages/sunset3.jpg);*/
+	background-repeat: no-repeat;
+    background-position: center;
+	height: 150px;
+	border: 1px solid grey;
+	text-align:center;
+	padding: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	
+}
+
+.profile-photo {
+	border: 1px solid grey;
+	text-align:center;
+	padding: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	background-color: #AED6F1;
+}
+
+.profile-menu {
+	height: 50px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border: 1px solid grey;
+	text-align: center;
+	background-color: #AED6F1;
+	font-family: arial;
+}
+
+.employment-history-menu {
+	text-align: center;
+	padding: 10px;
+}
+
+.qualifications-menu {
+	text-align: center;
+	padding: 10px;
+}
+
+.skills-menu {
+	text-align: center;
+	padding: 10px;
+}
+
+.vacs-and-conns {
+	height: 150px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border: 1px solid grey;
+	text-align: center;
+	background-color: #AED6F1;
+	font-family: arial;
+}
+
+
+.sample-connections {
+	text-align: center;
+	padding: 10px;
+}
+
+.sample-vacancies {
+	text-align: center;
+	padding: 10px;
+}
+
+.profile-information {
+	padding: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border: 1px solid grey;
+	background-color: #AED6F1;
+	font-family: arial;
+	font-size: 13px;
+}
+
+
+
+	
