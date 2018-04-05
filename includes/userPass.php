@@ -63,7 +63,7 @@ if ($conn->connect_error) {
                           }else{echo '<br>';
         												$hashedPwd = password_hash($NewPwd, PASSWORD_DEFAULT);
                                 $sql = "UPDATE users SET UserPwd='".$hashedPwd."' WHERE UserId ='".$_SESSION['u_id']."';";
-        												echo $sql;
+        												//echo $sql;
         												// Perform a query, check for error
         												if (!mysqli_query($conn, $sql))
         												  {
