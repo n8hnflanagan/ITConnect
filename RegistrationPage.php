@@ -22,16 +22,21 @@
 
 
 			<form class="signup-form" action="includes/signup.inc.php" method="POST" autocomplete="on">
-			<input type="text" name="UserFirstName" placeholder="UserFirstName"><br/>
-			<input type="text" name="UserLastName" placeholder="UserLastName"><br/>
-			<input type="text" name="UserEmail" placeholder="E-mail"><br/>
-			<input type="text" name="UserAddress" placeholder="Address"><br/>
-			<input type="text" name="UserName" placeholder="UserName"><br/>
-			<input type="text" name="UserPwd" placeholder="Password"><br/>
-			<input type="text" name="ConfUserPwd" placeholder="Confirm Password"><br/>
-			<button type="submit" name="submit">SignUp</button>
+				<input type="text" name="UserFirstName" placeholder="UserFirstName"><br/>
+				<input type="text" name="UserLastName" placeholder="UserLastName"><br/>
+				<input type="text" name="UserEmail" placeholder="E-mail"><br/>
+				<input type="text" name="UserAddress" placeholder="Address"><br/>
+				<input type="text" name="UserName" placeholder="UserName"><br/>
+				<input type="text" name="UserPwd" placeholder="Password"><br/>
+				<input type="text" name="ConfUserPwd" placeholder="Confirm Password"><br/>
+				<label for="sel1">Select User Type:</label>
+					   <select class="form-control" name="selType" id="register">
+							 <option value="standard">Standard</option>
+							 <option value="company">Company</option>
+						 </select>
+				<button type="submit" name="submit">SignUp</button>
 		  </form>
-			
+
                 </div>
             </section>
         </div>

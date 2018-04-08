@@ -35,6 +35,7 @@ if (isset($_POST['submit'])) {
 								$_SESSION['u_last'] = $row['UserLastName'];
 								$_SESSION['u_email'] = $row['UserEmail'];
 								$_SESSION['u_name'] = $row['UserName'];
+								$_SESSION['u_type'] = $row['UserCompany'];
 								header("Location: ../UserProfilePage.php?login=success");
 								exit();
  								}

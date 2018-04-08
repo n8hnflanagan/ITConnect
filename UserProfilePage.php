@@ -7,14 +7,38 @@
 		}
 ?>
 
-<div class="container">
-		<div class="row">
-				<div class="cover-photo">
-					<img class="center" class="img-responsive" src="PrototypeImages/sunset4.png" style="background-image"  alt="Cover Photo" width="1024" height="200">
-				</div>
-			</div>
-		</div>
-</div>
+<!--Start CoverPhoto(Background photo) Picture Code-->
+<?php
+echo '<div class="container">
+	<div class="row">
+		<div class = "profile-photo" >'; ?>
+
+			<?php
+			echo '<img class="center" class="img-responsive"';
+			$sql= "SELECT UserCoverPhotoFileLocation FROM users WHERE UserId ='".$_SESSION['u_id']."';";
+			//echo $sql;
+			mysqli_query($conn, $sql);
+			$result = $conn->query($sql);
+			$row = $result->fetch_assoc();
+			//print_r($row);
+			$userCoverFileLocation=$row['UserCoverPhotoFileLocation'];
+			//print_r($row);
+						if (mysqli_connect_errno())
+							{
+							echo "Failed to connect to MySQL: " . mysqli_connect_error();
+							}
+
+							// Perform a query, check for error
+							if (!mysqli_query($conn, $sql))
+								{
+								echo("Error description: " . mysqli_error($conn));
+								}
+
+			//$sql = "UPDATE users SET UserPwd='".$hashedPwd."' WHERE UserId ='".$_SESSION['u_id']."';";
+			echo ' src="'.$userCoverFileLocation.'"'; ?> alt="Background Cover Photo" width="1024" height="200">
+			<!-- End  CoverPhoto(Background photo) Picture Code-->
+
+
 
 <div class="container">
 	<div class="row">
@@ -105,6 +129,7 @@
 
 					?>
 					<p><?php echo $userCurrJob ?>  <br> <?php echo $userCurrCompany ?> <br> <?php echo $userCurrAddress ?> </p>
+					<p>UserType: <?php echo $_SESSION['u_type'] ?>  <br>
 
 				</div>
 	</div>
@@ -151,13 +176,24 @@
 						<h4> Your Connections</h4>
 						<hr>
 						<?php
-						$sql= "SELECT UserId FROM users WHERE UserId ='".$_SESSION['u_id']."';";
+						$sql= "SELECT DISTINCT users.UserFirstName, users.UserLastName FROM users,connections WHERE users.UserId IN (SELECT userId_1 FROM connections WHERE UserId='".$_SESSION['u_id']."')" ;
+						//echo $sql;
+						//$sql= "SELECT UserId FROM users WHERE UserId ='".$_SESSION['u_id']."';";
 						//echo $sql;
 						mysqli_query($conn, $sql);
 						$result = $conn->query($sql);
-						$row = $result->fetch_assoc();
+						//$row = $result->fetch_assoc();
 						//print_r($row);
-						$userCurrAddress=$row['UserAddress'];
+						while ($row = $result->fetch_assoc())
+						  {
+							    echo $row['UserFirstName'] ;
+									echo " ";
+									echo $row['UserLastName'];
+									echo "<br/>";
+							    // do stuff with $row
+							}
+						//print_r($row);
+						//$userCurrAddress=$row['UserAddress'];
 						//print_r($row);
 									if (mysqli_connect_errno())
 										{
@@ -171,54 +207,187 @@
 											} ?>
 					</div>
 				</div>
-				<div class="col-md-6">
-					<div class="sample-vacancies">
-						<h4> Suggested Vacancies </h4>
-						<hr>
-					</div>
-				</div>
+
 			</div>
 	</div>
 </div>
 
 <div class="container">
 		<div class="row">
+			<div class="vacs-and-conns">
+				<div class="col-md-6">
+					<div class="sample-vacancies">
+						<h4> Suggested Vacancies </h4>
+						<hr>
+				<?php	$sql=	"SELECT vacancies.VacTitle,vacancies.VacDescription,vacancies.VacRequiredexp,vacancies.VacStatus,
+											vacancies.VacLocation,
+											vacancies.VacSalary,
+											vacancies.VacDisplay,
+											vacancies.VacDatePosted,
+											vacancies.VacExpLevel,
+											companies.CompName
+										  FROM
+											itconnect.vacancies vacancies,
+											itconnect.companies companies,
+											itconnect.skillsforvacancy skillsforvacancy,
+											itconnect.userskills userskills
+										  WHERE
+											vacancies.VacanciesId = skillsforvacancy.VacanciesId AND
+											vacancies.CompId = companies.CompId AND
+											skillsforvacancy.SkillsId = userskills.SkillsId AND
+											userskills.UserId = '".$_SESSION['u_id']."' ";
+							//echo $sql;
+							//echo '<br/>';
+							mysqli_query($conn, $sql);
+							$result = $conn->query($sql);
+							//$row = $result->fetch_assoc();
+							//print_r($row);
+							while ($row = $result->fetch_assoc())
+							  {
+								    echo "JobTitle".$row['VacTitle']."" ;
+										echo " ";
+										echo $row['VacDescription'];
+										echo "<br/>";
+								    // do stuff with $row
+								}
+	       ?>
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+</div>
+
+<div class="container">
+		<div class="row">
 				<div class="profile-information">
 					<h3><b>About Me:<b></h3>
-					<p class="text-justify"> An experienced software developer with more than 10 years of experience in various industries. Having started his career in quality assurance, he shifted his focus to working with software product companies, primarily in the mobile telecommunications sector to drive technical best practice, and deliver business value. </p>
+				<?php
+				$sql= "SELECT UserAboutMe FROM users WHERE UserId ='".$_SESSION['u_id']."';";
+				//echo $sql;
+				mysqli_query($conn, $sql);
+				$result = $conn->query($sql);
+				$row = $result->fetch_assoc();
+				//print_r($row);
+				$userAboutMe=$row['UserAboutMe'];
+				//print_r($row);
+							if (mysqli_connect_errno())
+								{
+								echo "Failed to connect to MySQL: " . mysqli_connect_error();
+								}
+
+								// Perform a query, check for error
+								if (!mysqli_query($conn, $sql))
+									{
+									echo("Error description: " . mysqli_error($conn));
+									}
+				?>
+					<p class="text-justify"><?php echo $userAboutMe ?> </p>
 					<br>
 					<hr>
 					<h3><b>Employment History</b></h3>
-					<h5><b>Position: </b><br> Senior Java Developer</h5>
-					<h5><b>Company: </b><br> Avaya</h5>
-					<h5><b>Dates of Employment: </b><br> April 2014 - present</h5>
-					<br>
-					<p class="text-justify"> As a Senior Java Developer, I have worked in the back-end design, development and delivery of their Content Licensing Management suite of web services. Have consistently delivered successful Java software deployments as part of a very successful Agile team using the latest Scrum tools such as Atlassian Jira for ticket and story management, GitHub for collaboration and IntelliJ IDE for code development.
-						Completed the development of numerous micro services in conjunction the latest Spring technologies such as Spring Boot, JPA and Spring Security together with REST based web services, JSON, XML, JSP and JavaScript running on a Tomcat platform connecting to an Oracle 11 database. Currently working with cutting edge technologies such as Neo4J graph database, Apache Camel and Hystrix Web service monitoring and the use of Bamboo and Jenkins continuous integration deployment framework. Consistently delivering quality code in a timely manner and worked in tandem with other teams from multiple geographic locations to achieve our success. </p>
-					<br><br>
+					<?php
+							$sql= "SELECT
+							jobhistory.JobHistFromDate,
+							jobhistory.JobHistToDate,
+							jobhistory.JobHistPosition,
+							jobhistory.JobHistPosDesc,
+							companies.CompName
+						FROM
+							itconnect.jobhistory jobhistory,
+							itconnect.companies companies
+						WHERE
+							jobhistory.CompId = companies.CompId AND
+							jobhistory.UserId = '".$_SESSION['u_id']."'
+						";
+						mysqli_query($conn, $sql);
+						$result = $conn->query($sql);
+						//$row = $result->fetch_assoc();
+						//print_r($row);
+						while ($row = $result->fetch_assoc())
+							{
+									echo "<h5><b>Position: </b><br>".$row['JobHistPosition']."</h5>" ;
+									echo "<h5><b>Company: </b><br>".$row['CompName']."</h5>" ;
+									//echo "<h5><b>CheckJHTODateNullValue: </b>".$row['JobHistToDate']."</h5></br>" ;
+									echo "<h5><b>Dates of Employment: </b><br>".$row['JobHistFromDate']. " - ";
+									if(empty($row['JobHistToDate'])){echo "Present";}else{
+																																				echo $row['JobHistToDate'];
+																																				}"</h5>" ;
+									echo "<br>";
+									echo " --------------------------------------------------------------------";
+									//echo $row['VacDescription'];
 
-					<h5><b>Position: </b><br> Senior Java Developer</h5>
-					<h5><b>Company: </b><br> Avaya</h5>
-					<h5><b>Dates of Employment: </b><br> April 2014 - present</h5>
-					<br>
-					<p class="text-justify"> As a Senior Java Developer, I have worked in the back-end design, development and delivery of their Content Licensing Management suite of web services. Have consistently delivered successful Java software deployments as part of a very successful Agile team using the latest Scrum tools such as Atlassian Jira for ticket and story management, GitHub for collaboration and IntelliJ IDE for code development.
-						Completed the development of numerous micro services in conjunction the latest Spring technologies such as Spring Boot, JPA and Spring Security together with REST based web services, JSON, XML, JSP and JavaScript running on a Tomcat platform connecting to an Oracle 11 database. Currently working with cutting edge technologies such as Neo4J graph database, Apache Camel and Hystrix Web service monitoring and the use of Bamboo and Jenkins continuous integration deployment framework. Consistently delivering quality code in a timely manner and worked in tandem with other teams from multiple geographic locations to achieve our success. </p>
-					<br><br>
-					<hr>
+									// do stuff with $row
+							}
+					?>
 
 					<h3><b>Qualifications<b></h3>
-					<h5><b>Institution: </b><br> University of Limerick</h5>
-					<h5><b>Qualification: </b><br> HDip Software Development</h5>
-					<h5><b>Dates: </b><br> Sept 2009 - Aug 2010</h5>
-					<br>
-					<p class="text-justify">Modules included: Programming,Fundamentals of Computer Organisation, Model Driven Development, Development of Information Systems, Database Systems
-					</p>
-					<br>
-					<hr>
+						<?php
+								$sql= "SELECT
+												UserQualInst,
+												UserQualDesc,
+												UserQualCompletionDate,
+												UserQualModules,
+												UserQualificationGrade
+											FROM
+												itconnect.userqualification
+											WHERE
+												UserId = '".$_SESSION['u_id']."'	";
+								//echo $sql;
+								mysqli_query($conn, $sql);
+								$result = $conn->query($sql);
+								//$row = $result->fetch_assoc();
+								//print_r($row);
+								while ($row = $result->fetch_assoc())
+									{
+											echo "<h5><b>Institution: </b><br>".$row['UserQualInst']."</h5>" ;
+											echo "<h5><b>Qualification: </b><br>".$row['UserQualDesc']."</h5>" ;
+											//echo "<h5><b>CheckJHTODateNullValue: </b>".$row['JobHistToDate']."</h5></br>" ;
+											echo "<h5><b>Date of Completion: </b><br/>".$row['UserQualCompletionDate']. "</h5>";
+											echo "<p class=\"text-justify\"<b>Modules included: <br>".$row['UserQualModules']."</b></p>" ;
+
+											echo "<br>";
+											echo " --------------------------------------------------------------------";
+											//echo $row['VacDescription'];
+
+											// do stuff with $row
+									}
+
+						?>
+
 
 					<h3><b>Skills<b></h3>
-					<p>Java<br>SQL<br>Agile<br>Project Management<br>
-					</p>
+						<?php
+							$sql= "SELECT
+											skills.SkillsTitle
+										FROM
+											itconnect.userskills userskills,
+											itconnect.skills skills
+										WHERE
+											userskills.SkillsId = skills.SkillsId AND
+											userskills.UserId = '".$_SESSION['u_id']."' ";
+											mysqli_query($conn, $sql);
+											$result = $conn->query($sql);
+											//$row = $result->fetch_assoc();
+											//print_r($row);
+											while ($row = $result->fetch_assoc())
+												{
+														echo $row['SkillsTitle'] ;
+														echo '<br/>';
+														//echo "<h5><b>Qualification: </b><br>".$row['UserQualDesc']."</h5>" ;
+														//echo "<h5><b>CheckJHTODateNullValue: </b>".$row['JobHistToDate']."</h5></br>" ;
+														//echo "<h5><b>Date of Completion: </b><br/>".$row['UserQualCompletionDate']. "</h5>";
+														//echo "<p class=\"text-justify\"<b>Modules included: <br>".$row['UserQualModules']."</b></p>" ;
+
+														//echo "<br>";
+														//echo " --------------------------------------------------------------------";
+														//echo $row['VacDescription'];
+
+														// do stuff with $row
+												}
+						?>
+
 					</div>
 				</div>
 			</div>

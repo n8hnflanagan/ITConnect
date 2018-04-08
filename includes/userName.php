@@ -5,7 +5,7 @@ if (isset($_POST['submit']))
 	{
 
 		include_once 'dbh.inc.php';
-    $sql="SELECT UserId FROM users WHERE UserName='".$_SESSION['u_id']."' && UserFirstName='".$_SESSION['u_first']."'&& UserLastName='".$_SESSION['u_last']."';";
+  /*  $sql="SELECT UserId FROM users WHERE UserName='".$_SESSION['u_id']."' && UserFirstName='".$_SESSION['u_first']."'&& UserLastName='".$_SESSION['u_last']."';";
 		echo '<br>';
 		echo $sql;
 		mysqli_query($conn, $sql);
@@ -35,10 +35,10 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-
+*/
 
 		$userName = mysqli_real_escape_string($conn, $_POST['UserName']);
-		echo $userId;
+		$userId = $_SESSION['u_id']  ;
 
 		//Error Handling
 		//Check for empty fields
@@ -55,9 +55,9 @@ if ($conn->connect_error) {
 								mysqli_close($conn);
 								exit();
 								} else{
-												echo '<br>';
+
 												$sql = "UPDATE users SET UserName='".$userName."' WHERE UserId ='".$userId."';";
-												echo $sql;
+												
 												// Perform a query, check for error
 												if (!mysqli_query($conn, $sql))
 												  {
